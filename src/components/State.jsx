@@ -8,9 +8,17 @@ const movie = {
 };
 
 function State() {
+  const [count, setCount] = useState(() => {
+    const initialValue = 10;
+    return initialValue;
+  });
   const [film, setMovie] = useState(movie);
   const handleClick = () => {
     setMovie({ ...film, title: "The Matrix" }); //it creates a new object with updated title and that's why it rerenders
+  };
+
+  const increment = () => {
+    setCount((prevCount) => prevCount + 1);
   };
 
   return (
@@ -20,8 +28,10 @@ function State() {
         <h1>{film.title}</h1>
         <p>Directed by: {film.director}</p>
         <p>Year: {film.year}</p>
+        <p>Count: {count}</p>
       </div>
       <button onClick={handleClick}>Change movie</button>
+      <button onClick={increment}>Increment count</button>
     </>
   );
 }
